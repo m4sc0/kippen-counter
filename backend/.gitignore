@@ -1,0 +1,73 @@
+# Python
+*.py[cod]
+*.pyo
+__pycache__/
+*.so
+
+# Virtual Environments
+env/
+venv/
+.venv/
+
+# Django
+*.log
+*.pot
+*.pyc
+*.sqlite3
+db.sqlite3
+local_settings.py
+media/
+staticfiles/
+
+# Environment Variables
+.env
+*.env
+.env.*
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pytest
+.pytest_cache/
+
+# Coverage
+.coverage
+*.cover
+htmlcov/
+.coverage.*
+.cache
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Docker
+*.stackdump
+docker-compose.override.yml
+build/
+*.pid
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*.~lock.*
+*.part
+*.filepart
+
+# Byte-compiled / optimized / DLL files
+*.pyc
+*.pyo
+*.pyd
