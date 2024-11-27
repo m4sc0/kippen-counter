@@ -1,0 +1,75 @@
+
+# Build artifacts
+# Configuration files
+# Expo
+# Expo custom cache
+# Expo-specific
+# IDEs and Editors
+# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+# Linux
+# Logs
+# Metro
+# Metro bundler
+# Native
+# Node.js
+# React Native
+# Temporary files
+# Testing
+# Windows
+# debug
+# dependencies
+# local env files
+# macOS
+# typescript
+$RECYCLE.BIN/
+*.filepart
+*.gz
+*.jks
+*.key
+*.keystore
+*.lcov
+*.lock
+*.log
+*.mobileprovision
+*.orig.*
+*.p12
+*.p8
+*.part
+*.pem
+*.swo
+*.swp
+*.tmp
+*.tsbuildinfo
+*.~lock.*
+.AppleDouble
+.DS_Store
+.LSOverride
+.cache/
+.env
+.env*.local
+.env.*
+.expo-shared/
+.expo/
+.idea/
+.metro-health-check*
+.vscode/
+Desktop.ini
+Thumbs.db
+android/
+babel.config.js
+build/
+coverage/
+dist/
+ehthumbs.db
+expo-env.d.ts
+ios/
+metro.config.js
+node_modules/
+npm-debug.*
+npm-debug.log*
+web-build/
+webpack.config.js
+yarn-debug.*
+yarn-debug.log*
+yarn-error.*
+yarn-error.log*
