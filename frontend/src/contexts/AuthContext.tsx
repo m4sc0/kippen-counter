@@ -1,5 +1,5 @@
-import { deleteToken, getToken, saveToken } from "@/services/authService";
-import apiClient from "@/services/axiosService";
+import { deleteToken, getToken, saveToken } from "@/src/services/authService";
+import apiClient from "@/src/services/axiosService";
 import { ReactNode, createContext, useEffect, useState } from "react";
 
 interface User {

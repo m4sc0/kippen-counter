@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, TextInput } from "react-native";
 import { Text, View, Button } from "@/components/Themed";
 import Container from "@/components/custom/Layout/Container";
-import useInternal from "@/hooks/useInternal";
+import useInternal from "@/src/hooks/useInternal";
 import { useEffect, useState } from "react";
 
 export default function SettingsScreen() {

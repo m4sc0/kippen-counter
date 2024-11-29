@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { View, TextInput, Button, Text, StyleSheet } from "react-native";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../src/contexts/AuthContext";
 import { useRouter } from "expo-router";
 
 const LoginScreen = () => {

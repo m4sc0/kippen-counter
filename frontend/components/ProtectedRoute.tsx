@@ -1,5 +1,5 @@
 import React, { ReactNode, useContext } from "react";
-import { AuthContext } from "@/contexts/AuthContext";
+import { AuthContext } from "@/src/contexts/AuthContext";
 import LoginScreen from "@/app/login";
 import { View, Text } from "./Themed";
 import { StyleSheet } from "react-native";

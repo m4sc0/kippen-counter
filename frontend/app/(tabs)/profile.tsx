@@ -1,10 +1,8 @@
 import { Button, StyleSheet } from "react-native";
 
-import EditScreenInfo from "@/components/EditScreenInfo";
 import { Text, View } from "@/components/Themed";
 import { useContext } from "react";
-import { AuthContext } from "@/contexts/AuthContext";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
+import { AuthContext } from "@/src/contexts/AuthContext";
 
 export default function TabTwoScreen() {
   const { logout } = useContext(AuthContext);

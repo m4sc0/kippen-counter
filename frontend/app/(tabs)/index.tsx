@@ -1,10 +1,9 @@
 import { Button, StyleSheet, TextInput } from "react-native";
 import { Text, View } from "@/components/Themed";
 import { useContext, useEffect, useState } from "react";
-import { getBaseUrl, saveBaseUrl } from "@/services/constantsService";
-import apiClient from "@/services/axiosService";
-import { AuthContext } from "@/contexts/AuthContext";
-import { createStyleSheet, useStyles } from "react-native-unistyles";
+import { getBaseUrl, saveBaseUrl } from "@/src/services/constantsService";
+import apiClient from "@/src/services/axiosService";
+import { AuthContext } from "@/src/contexts/AuthContext";
 
 export default function TabOneScreen() {
   const [backendUrl, setBackendUrl] = useState<string | null>(null);

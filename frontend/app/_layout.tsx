@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/components/useColorScheme";
-import { AuthProvider } from "@/contexts/AuthContext";
+import { AuthProvider } from "@/src/contexts/AuthContext";
 
 export {
   // Catch any errors thrown by the Layout component.
