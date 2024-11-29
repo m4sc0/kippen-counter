@@ -1,62 +1,39 @@
-import React, { ReactNode, useContext } from "react";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Link, Tabs } from "expo-router";
-import { Pressable } from "react-native";
-
-import Colors from "@/src/constants/Colors";
-import { useColorScheme } from "@/components/useColorScheme";
-import { useClientOnlyValue } from "@/components/useClientOnlyValue";
+import React, { useState } from "react";
+import { BottomNavigation } from "react-native-paper";
+import { useTheme } from "@/src/theming/ThemeProvider"; // Access theme
 import ProtectedRoute from "@/components/ProtectedRoute";
-
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
-  color: string;
-}) {
-  return <FontAwesome size={20} style={{ marginBottom: -3 }} {...props} />;
-}
+import HomeScreen from "@/src/screens/home";
+import ProfileScreen from "@/src/screens/profile";
+import SettingsScreen from "@/src/screens/settings";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const { theme } = useTheme(); // Access the current theme
+  const [index, setIndex] = useState(0);
+
+  // Define routes for the bottom navigation
+  const [routes] = useState([
+    { key: "home", title: "Home", focusedIcon: "home" },
+    { key: "settings", title: "Settings", focusedIcon: "cog" },
+  ]);
+
+  // Map each route key to its component
+  const renderScene = BottomNavigation.SceneMap({
+    home: HomeScreen,
+    settings: SettingsScreen,
+  });
 
   return (
     <ProtectedRoute>
-      <Tabs
-        screenOptions={{
-          tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-          headerShown: useClientOnlyValue(false, true),
+      <BottomNavigation
+        navigationState={{ index, routes }}
+        onIndexChange={setIndex}
+        renderScene={renderScene}
+        barStyle={{
+          backgroundColor: theme.colors.background, // Themed background
         }}
-      >
-        <Tabs.Screen
-          name="index"
-          options={{
-            title: "Home",
-            tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
-            headerRight: () => (
-              <Link href="/settings" asChild>
-                <Pressable>
-                  {({ pressed }) => (
-                    <FontAwesome
-                      name="cog"
-                      size={25}
-                      color={Colors[colorScheme ?? "light"].text}
-                      style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                    />
-                  )}
-                </Pressable>
-              </Link>
-            ),
-          }}
-          // component={TabOneScreen}
-        />
-        <Tabs.Screen
-          name="profile"
-          options={{
-            title: "Profile",
-            tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
-          }}
-        />
-      </Tabs>
+        activeColor={theme.colors.primary} // Themed active tab color
+        inactiveColor={theme.colors.text} // Themed inactive tab color
+      />
     </ProtectedRoute>
   );
 }
