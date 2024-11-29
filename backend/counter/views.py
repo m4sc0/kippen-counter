@@ -48,3 +48,16 @@ class UserView(APIView):
             serializer.save()
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
         return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class OwnUserView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        serialized = RegisterSerializer(request.user)
+        return Response(data=serialized.data, status=status.HTTP_200_OK)
+
+
+class TestView(APIView):
+    def get(self, request):
+        return Response(data={"message": "Hello World!"}, status=status.HTTP_200_OK)

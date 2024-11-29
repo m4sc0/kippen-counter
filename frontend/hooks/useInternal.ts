@@ -31,7 +31,7 @@ const useInternal = (key: string, initValue: string) => {
     }
   };
 
-  return [value, setValue];
+  return [value, saveValue];
 };
 
 export default useInternal;

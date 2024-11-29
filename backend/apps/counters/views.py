@@ -8,11 +8,11 @@ from counter.utils.responses import DetailResponse
 
 
 class CounterListView(APIView):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     serializer_class = CounterSerializer
 
     def get(self, request):
-        counters = Counter.objects.filter()
+        counters = Counter.objects.filter(created_by=request.user)
         serializer = CounterSerializer(counters, many=True)
         return DetailResponse(
             data=serializer.data,
