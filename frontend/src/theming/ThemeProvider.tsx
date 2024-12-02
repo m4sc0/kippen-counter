@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useState, useMemo } from "react";
 import { themes, ThemeType } from "./themes";
 import { PaperProvider } from "react-native-paper";
 
@@ -6,6 +6,7 @@ type ThemeContextType = {
   themeType: ThemeType; // Current theme as a string (e.g., 'light', 'dark')
   theme: (typeof themes)[ThemeType]; // Current theme object
   setTheme: (theme: ThemeType) => void; // Function to update the theme
+  setPrimaryColor: (color: string) => void; // Function to update the primary color
 };
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -18,16 +19,32 @@ export const ThemeProvider = ({
   children: ReactNode;
 }) => {
   const [themeType, setThemeType] = useState<ThemeType>(initialTheme);
+  const [customPrimaryColor, setCustomPrimaryColor] = useState<string | null>(
+    null,
+  );
+
+  // Memoized theme to avoid unnecessary re-renders
+  const currentTheme = useMemo(() => {
+    const baseTheme = themes[themeType];
+    return {
+      ...baseTheme,
+      colors: {
+        ...baseTheme.colors,
+        primary: customPrimaryColor || baseTheme.colors.primary,
+      },
+    };
+  }, [themeType, customPrimaryColor]);
 
   return (
     <ThemeContext.Provider
       value={{
         themeType,
-        theme: themes[themeType], // Provide the full theme object
+        theme: currentTheme,
         setTheme: setThemeType,
+        setPrimaryColor: setCustomPrimaryColor,
       }}
     >
-      <PaperProvider theme={themes[themeType]}>{children}</PaperProvider>
+      <PaperProvider theme={currentTheme}>{children}</PaperProvider>
     </ThemeContext.Provider>
   );
 };

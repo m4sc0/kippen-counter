@@ -1,6 +1,12 @@
 import { deleteToken, getToken, saveToken } from "@/src/services/authService";
 import apiClient from "@/src/services/axiosService";
-import { ReactNode, createContext, useEffect, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 interface User {
   id?: number;
@@ -38,9 +44,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       return true;
     } catch (error) {
       throw error;
-      return false;
     } finally {
       setLoading(false);
+      return false;
     }
   };
 
@@ -75,4 +81,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       {children}
     </AuthContext.Provider>
   );
+};
+
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("AuthContext must be used within an AuthProvider");
+  }
+  return context;
 };

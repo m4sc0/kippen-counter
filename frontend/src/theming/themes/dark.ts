@@ -8,6 +8,7 @@ export const darkTheme = {
     primary: "#6D67E4",
     background: "#141414",
     text: "#ffffff",
+    dimmed: "#aaaaaa",
     border: "#333333",
   },
 };

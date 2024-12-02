@@ -1,6 +1,9 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.timezone import now
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class Counter(models.Model):
@@ -76,6 +79,7 @@ class Counter(models.Model):
         """
         Add to the counter, updating `reset_value` or `value` based on type.
         """
+        logger.debug(f"Adding to counter {self.name}, type: {self.type}")
         self.reset_if_needed()
         if self.type != 0:  # Not normal
             self.reset_value += 1

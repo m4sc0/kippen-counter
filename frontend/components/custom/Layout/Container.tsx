@@ -1,22 +1,71 @@
-import { ReactNode } from "react";
-import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
+import React, { FC } from "react";
+import {
+  View,
+  ViewProps,
+  StyleSheet,
+  StyleProp,
+  ViewStyle,
+} from "react-native";
 
-interface ContainerProps {
+interface ContainerProps extends ViewProps {
+  flex?: boolean;
+  center?: boolean;
+  row?: boolean;
+  col?: boolean;
+  justifyContent?:
+    | "flex-start"
+    | "flex-end"
+    | "center"
+    | "space-between"
+    | "space-around"
+    | "space-evenly";
+  alignItems?: "flex-start" | "flex-end" | "center" | "stretch" | "baseline";
   style?: StyleProp<ViewStyle>;
-  children: ReactNode;
 }
 
-const Container: React.FC<ContainerProps> = ({ style, children }) => {
-  return <View style={[styles.container, style]}>{children}</View>;
+const Container: FC<ContainerProps> = ({
+  flex,
+  center,
+  row,
+  col,
+  justifyContent,
+  alignItems,
+  style,
+  children,
+  ...props
+}) => {
+  return (
+    <View
+      style={[
+        flex && styles.flex,
+        center && styles.center,
+        row && styles.row,
+        col && styles.col,
+        justifyContent && { justifyContent },
+        alignItems && { alignItems },
+        style,
+      ]}
+      {...props}
+    >
+      {children}
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    display: "flex",
-    padding: 12,
-    gap: 8,
-    backgroundColor: "#222", // TODO: make dynamic
-    borderRadius: 8,
+  flex: {
+    flex: 1,
+    gap: 4,
+  },
+  row: {
+    flexDirection: "row",
+  },
+  col: {
+    flexDirection: "column",
+  },
+  center: {
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

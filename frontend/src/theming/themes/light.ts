@@ -8,6 +8,7 @@ export const lightTheme = {
     primary: "#6200ee",
     background: "#ffffff",
     text: "#000000",
+    dimmed: "#444444",
     border: "#cccccc",
   },
 };
